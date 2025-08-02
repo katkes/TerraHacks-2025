@@ -1,86 +1,86 @@
 {
   "nodes": [
     {
-      "id": "user_001",
+      "id": "alex",
       "data": {
         "name": "Alex Nguyen",
         "topic": "Anxiety",
         "story": "Years of constant worry culminated in panic attacks at work. CBT sessions and daily breath-work exercises helped me regain control.",
-        "topMatch": "user_004"
+        "topMatch": "maria"
       }
     },
     {
-      "id": "user_002",
+      "id": "priya",
       "data": {
         "name": "Priya Patel",
         "topic": "Depression",
         "story": "I felt numb for months after a breakup. Journaling and a therapist-recommended exercise routine slowly lifted the fog.",
-        "topMatch": "user_006"
+        "topMatch": "emily"
       }
     },
     {
-      "id": "user_003",
+      "id": "daniel",
       "data": {
         "name": "Daniel O'Connor",
         "topic": "Work Stress",
         "story": "Overtime and unrealistic deadlines burned me out. Setting clearer boundaries and using a Pomodoro schedule restored my energy.",
-        "topMatch": "user_007"
+        "topMatch": "kevin"
       }
     },
     {
-      "id": "user_004",
+      "id": "maria",
       "data": {
         "name": "Maria Lopez",
         "topic": "Social Anxiety",
         "story": "Speaking in meetings terrified me. Gradual exposure—starting with one-on-one chats—plus mindful grounding cut my fear in half.",
-        "topMatch": "user_001"
+        "topMatch": "alex"
       }
     },
     {
-      "id": "user_005",
+      "id": "jamal",
       "data": {
         "name": "Jamal Carter",
         "topic": "Insomnia",
         "story": "Night-long scrolling wrecked my sleep. A strict no-screens rule after 10 p.m. and melatonin got me back to 7-hour nights.",
-        "topMatch": "user_001"
+        "topMatch": "alex"
       }
     },
     {
-      "id": "user_006",
+      "id": "emily",
       "data": {
         "name": "Emily Zhang",
         "topic": "Post-partum Depression",
         "story": "After my son was born I felt overwhelmed and detached. A support group and medication helped me reconnect with joy.",
-        "topMatch": "user_002"
+        "topMatch": "priya"
       }
     },
     {
-      "id": "user_007",
+      "id": "kevin",
       "data": {
         "name": "Kevin Brooks",
         "topic": "Burnout",
         "story": "My passion project turned into a 24/7 grind. Scheduling real weekends and delegating tasks brought back my creativity.",
-        "topMatch": "user_003"
+        "topMatch": "daniel"
       }
     },
     {
-      "id": "user_008",
+      "id": "sara",
       "data": {
         "name": "Sara Ali",
         "topic": "PTSD",
         "story": "A car accident left me hyper-vigilant. EMDR therapy and guided visualization reduced flashbacks substantially.",
-        "topMatch": "user_002"
+        "topMatch": "priya"
       }
     }
   ],
   "links": [
-    { "source": "user_001", "target": "user_004" },
-    { "source": "user_004", "target": "user_001" },
-    { "source": "user_002", "target": "user_006" },
-    { "source": "user_006", "target": "user_002" },
-    { "source": "user_003", "target": "user_007" },
-    { "source": "user_007", "target": "user_003" },
-    { "source": "user_005", "target": "user_001" },
-    { "source": "user_008", "target": "user_002" }
+    { "source": "alex", "target": "maria" },
+    { "source": "maria", "target": "alex" },
+    { "source": "priya", "target": "emily" },
+    { "source": "emily", "target": "priya" },
+    { "source": "daniel", "target": "kevin" },
+    { "source": "kevin", "target": "daniel" },
+    { "source": "jamal", "target": "alex" },
+    { "source": "sara", "target": "priya" }
   ]
 }

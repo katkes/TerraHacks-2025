@@ -1,0 +1,94 @@
+{
+  "nodes": [
+    {
+      "id": "user_001",
+      "data": {
+        "name": "John Smith",
+        "major": "MBA Program",
+        "response": "I think time management is crucial for productivity. I usually start my day by prioritizing tasks and setting realistic deadlines.",
+        "topMatch": "user_005"
+      }
+    },
+    {
+      "id": "user_002",
+      "data": {
+        "name": "Sarah Johnson",
+        "major": "Computer Science",
+        "response": "My approach to problem-solving involves breaking down complex issues into smaller, manageable components and tackling them systematically.",
+        "topMatch": "user_006"
+      }
+    },
+    {
+      "id": "user_003",
+      "data": {
+        "name": "Michael Brown",
+        "major": "Engineering",
+        "response": "I believe effective communication is the foundation of successful teamwork. Clear expectations and regular feedback loops are essential.",
+        "topMatch": "user_006"
+      }
+    },
+    {
+      "id": "user_004",
+      "data": {
+        "name": "Emily Davis",
+        "major": "Psychology",
+        "response": "When facing challenges, I try to maintain a growth mindset and view obstacles as opportunities to learn and develop new skills.",
+        "topMatch": "user_007"
+      }
+    },
+    {
+      "id": "user_005",
+      "data": {
+        "name": "David Wilson",
+        "major": "Business Administration",
+        "response": "I find that setting SMART goals helps me stay focused and motivated. Specific, measurable objectives make it easier to track progress.",
+        "topMatch": "user_001"
+      }
+    },
+    {
+      "id": "user_006",
+      "data": {
+        "name": "Lisa Garcia",
+        "major": "Marketing",
+        "response": "Collaboration and diverse perspectives often lead to more innovative solutions than working in isolation.",
+        "topMatch": "user_002"
+      }
+    },
+    {
+      "id": "user_007",
+      "data": {
+        "name": "Robert Martinez",
+        "major": "N/A",
+        "response": "I believe in continuous learning and staying updated with industry trends to remain competitive in today's fast-paced environment.",
+        "topMatch": "user_004"
+      }
+    },
+    {
+      "id": "user_008",
+      "data": {
+        "name": "Jennifer Lee",
+        "major": "Health Sciences",
+        "response": "Mindfulness and stress management techniques have significantly improved my work-life balance and overall well-being.",
+        "topMatch": "user_001"
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "user_001",
+      "target": "user_005"
+    },
+    {
+      "source": "user_004",
+      "target": "user_007"
+    },
+    {
+      "source": "user_005",
+      "target": "user_001"
+    },
+    {
+      "source": "user_007",
+      "target": "user_004"
+    }
+  ]
+}
