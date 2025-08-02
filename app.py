@@ -25,7 +25,7 @@ except Exception as e:
 @app.route('/submit-story', methods=['POST'])
 def submitStory():
     data = request.json
-    name = data.get('name', 'Anonymous')
+    alias = data.get('alias', 'Anonymous')
     storyText = data.get('storyText')
     insightText = data.get('insightText')
 
@@ -36,7 +36,7 @@ def submitStory():
 
     newStoryDoc = {
         "storyId": storyId,
-        "name": name,
+        "alias": alias,
         "storyText": storyText,
         "insightText": insightText
     }
@@ -47,7 +47,7 @@ def submitStory():
         return jsonify({
             "message": "Story submitted successfully!",
             "storyId": storyId,
-            "alias": name
+            "alias": alias
         }), 201
     except Exception as e:
         print(f"Error inserting story into MongoDB: {e}")
