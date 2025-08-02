@@ -1,4 +1,4 @@
-import { TextServiceClient } from '@google-cloud/generative-ai';
+import { TextServiceClient } from '@google/generative-ai';
 const client = new TextServiceClient();
 
 export async function summarizeThemes(text) {
