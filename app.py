@@ -63,7 +63,6 @@ def getStoryDetails(storyId):
             return jsonify(storyDoc), 200
         return jsonify({"error": "Story not found."}), 404
     except Exception as e:
-        print(f"Error fetching story {storyId} details: {e}")
         return jsonify({"error": "Failed to retrieve story details."}), 500
     
 @app.route('/get-graph-data', methods=['GET'])
@@ -139,7 +138,6 @@ def get_graph_data():
         return jsonify({"nodes": nodes, "links": links}), 200
 
     except Exception as e:
-        print(f"Error fetching graph data: {e}")
         return jsonify({"error": "Failed to retrieve graph data."}), 500
     
 @app.route('/search-story', methods=['GET'])
@@ -148,12 +146,11 @@ def search_story():
     Handles search queries, performing an exact, case-insensitive match on 'alias'.
     Returns the 'storyId's of matching nodes for the frontend to highlight on the graph.
     """
-    query = request.args.get('q', '').strip() # Get the 'q' parameter from the URL, remove whitespace
+    query = request.args.get('q', '').strip() 
     if not query:
         return jsonify({"matched_ids": [], "message": "Please provide an alias to search for."}), 200
 
     matched_ids = []
-    message = "No stories found with that alias."
 
     try:
         # Perform an exact, case-insensitive match on the 'alias' field
@@ -167,13 +164,11 @@ def search_story():
         
         if found_stories:
             matched_ids.extend([s.get('storyId') for s in found_stories])
-            message = f"Found {len(found_stories)} stories with alias '{query}'."
         
     except Exception as e:
-        print(f"Error during alias search: {e}")
         return jsonify({"error": "An error occurred during search."}), 500
 
-    return jsonify({"matched_ids": matched_ids, "message": message}), 200
+    return jsonify({"matched_ids": matched_ids}), 200
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
