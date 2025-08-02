@@ -1,0 +1,86 @@
+{
+  "nodes": [
+    {
+      "id": "user_001",
+      "data": {
+        "name": "Alex Nguyen",
+        "topic": "Anxiety",
+        "story": "Years of constant worry culminated in panic attacks at work. CBT sessions and daily breath-work exercises helped me regain control.",
+        "topMatch": "user_004"
+      }
+    },
+    {
+      "id": "user_002",
+      "data": {
+        "name": "Priya Patel",
+        "topic": "Depression",
+        "story": "I felt numb for months after a breakup. Journaling and a therapist-recommended exercise routine slowly lifted the fog.",
+        "topMatch": "user_006"
+      }
+    },
+    {
+      "id": "user_003",
+      "data": {
+        "name": "Daniel O'Connor",
+        "topic": "Work Stress",
+        "story": "Overtime and unrealistic deadlines burned me out. Setting clearer boundaries and using a Pomodoro schedule restored my energy.",
+        "topMatch": "user_007"
+      }
+    },
+    {
+      "id": "user_004",
+      "data": {
+        "name": "Maria Lopez",
+        "topic": "Social Anxiety",
+        "story": "Speaking in meetings terrified me. Gradual exposure—starting with one-on-one chats—plus mindful grounding cut my fear in half.",
+        "topMatch": "user_001"
+      }
+    },
+    {
+      "id": "user_005",
+      "data": {
+        "name": "Jamal Carter",
+        "topic": "Insomnia",
+        "story": "Night-long scrolling wrecked my sleep. A strict no-screens rule after 10 p.m. and melatonin got me back to 7-hour nights.",
+        "topMatch": "user_001"
+      }
+    },
+    {
+      "id": "user_006",
+      "data": {
+        "name": "Emily Zhang",
+        "topic": "Post-partum Depression",
+        "story": "After my son was born I felt overwhelmed and detached. A support group and medication helped me reconnect with joy.",
+        "topMatch": "user_002"
+      }
+    },
+    {
+      "id": "user_007",
+      "data": {
+        "name": "Kevin Brooks",
+        "topic": "Burnout",
+        "story": "My passion project turned into a 24/7 grind. Scheduling real weekends and delegating tasks brought back my creativity.",
+        "topMatch": "user_003"
+      }
+    },
+    {
+      "id": "user_008",
+      "data": {
+        "name": "Sara Ali",
+        "topic": "PTSD",
+        "story": "A car accident left me hyper-vigilant. EMDR therapy and guided visualization reduced flashbacks substantially.",
+        "topMatch": "user_002"
+      }
+    }
+  ],
+  "links": [
+    { "source": "user_001", "target": "user_004" },
+    { "source": "user_004", "target": "user_001" },
+    { "source": "user_002", "target": "user_006" },
+    { "source": "user_006", "target": "user_002" },
+    { "source": "user_003", "target": "user_007" },
+    { "source": "user_007", "target": "user_003" },
+    { "source": "user_005", "target": "user_001" },
+    { "source": "user_008", "target": "user_002" }
+  ]
+}

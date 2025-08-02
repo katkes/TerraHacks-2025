@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "config.pixel": "2.0.0",
+    "ngraph.generators": "0.0.18",
+    "query-string": "^1.0.0",
+    "tailwindcss": "^3.4.3",
+    "watchify": "^4.0.0"
+  },
+  "scripts": {
+    "build": "browserify index.js -o bundle.js"
+  },
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "ngraph.graph": "^20.0.1",
+    "uniq": "^1.0.1"
+  }
+}
