@@ -1,6 +1,7 @@
 // src/StoryForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { VoiceChat } from "./components/VoiceChat";
 
 export default function StoryForm() {
   const [text, setText]     = useState('');
@@ -20,6 +21,7 @@ export default function StoryForm() {
 
   return (
     <div className="p-4 max-w-lg mx-auto">
+      <VoiceChat />
       <form onSubmit={handleSubmit} className="space-y-4">
         <textarea
           rows={6}

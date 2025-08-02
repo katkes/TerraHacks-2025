@@ -12,6 +12,7 @@ export const VoiceChat = () => {
   const audioContextRef = useRef(null);
   const audioChunksRef = useRef([]);
   const recognitionRef = useRef(null);
+  const queueTimeRef = useRef(0);
 
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -60,6 +61,8 @@ export const VoiceChat = () => {
       audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)({
         sampleRate: 48000
       });
+      // start our queue at the current time
+      queueTimeRef.current = audioContextRef.current.currentTime;
     }
     
     // Resume audio context if suspended (required by browsers)
@@ -78,7 +81,15 @@ export const VoiceChat = () => {
     wsRef.current.onopen = () => {
       setIsConnected(true);
       setStatus('🔌 Connected to server');
-      wsRef.current.send(JSON.stringify({ type: 'start_session' }));
+      wsRef.current.send(JSON.stringify({
+        type: 'start_session',
+        config: {
+          model: 'gemini-live-2.5-flash-preview',      
+          responseModalities: ['AUDIO'],               // audio output only
+          implementationApproach: 'SERVER_TO_SERVER',   // server-to-server
+          outputAudioTranscription: {}   // request transcription alongside audio
+        }
+      }));
     };
     
     wsRef.current.onmessage = (event) => {
@@ -102,91 +113,109 @@ export const VoiceChat = () => {
 };
 
   const playAudioResponse = async (base64Audio, mimeType = 'audio/pcm;rate=16000') => {
-  try {
-    console.log('🎵 Starting audio playback...');
-    console.log('📊 Audio data length:', base64Audio?.length);
-    console.log('🎵 Mime type:', mimeType);
-    
-    if (!base64Audio) {
-      console.error('❌ No audio data received');
-      setStatus('❌ No audio data');
-      return;
-    }
-    
-    if (!audioContextRef.current) {
-      console.log('🔧 Creating new audio context');
-      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)({
-        sampleRate: 48000
+    try {
+      console.log('🎵 Starting audio playback...');
+      console.log('📊 Audio data length:', base64Audio?.length);
+      console.log('🎵 Mime type:', mimeType);
+      
+      if (!base64Audio) {
+        console.error('❌ No audio data received');
+        setStatus('❌ No audio data');
+        return;
+      }
+      
+      if (!audioContextRef.current) {
+        console.log('🔧 Creating new audio context');
+        audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)({
+          sampleRate: 48000
+        });
+      }
+      
+      if (audioContextRef.current.state === 'suspended') {
+        console.log('🔧 Resuming suspended audio context');
+        await audioContextRef.current.resume();
+      }
+      
+      console.log('🔊 Audio context state:', audioContextRef.current.state);
+      
+      // Convert base64 to audio buffer
+      const binaryString = atob(base64Audio);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      
+      console.log('📊 Decoded audio bytes:', bytes.length);
+      
+      // Extract sample rate from mimeType
+      const sampleRate = mimeType.includes('rate=24000') ? 24000 : 16000;
+      console.log('🎵 Using sample rate:', sampleRate);
+      
+      // Create audio buffer
+      // strip WAV header if present
+      let offset = 0;
+      if (bytes.length > 44) {
+        const header = String.fromCharCode(...bytes.slice(0,4));
+        if (header === 'RIFF') offset = 44;
+      }
+      const numSamples = (bytes.length - offset) / 2;
+      const audioBuffer = audioContextRef.current.createBuffer(1, numSamples, sampleRate);
+      const channelData = audioBuffer.getChannelData(0);
+      const dataView = new DataView(bytes.buffer, offset);
+      for (let i = 0; i < numSamples; i++) {
+        const sample = dataView.getInt16(i * 2, true);
+        channelData[i] = sample / 32768.0;
+      }
+      
+      console.log('🎵 Audio buffer created:', {
+        duration: audioBuffer.duration,
+        sampleRate: audioBuffer.sampleRate,
+        length: audioBuffer.length,
+        channels: audioBuffer.numberOfChannels
       });
+      
+      // schedule playback sequentially
+      const ctx = audioContextRef.current;
+      const now = ctx.currentTime;
+      const startTime = Math.max(now, queueTimeRef.current);
+
+      const source = ctx.createBufferSource();
+      source.buffer = audioBuffer;
+
+      // compensate sample‐rate mismatch
+      const baseRate = sampleRate / ctx.sampleRate;
+      // boost pitch by 20%
+      const pitchFactor = 1.2;
+      source.playbackRate.value = baseRate * pitchFactor;
+
+      // Add gain node for volume control
+      const gainNode = ctx.createGain();
+      gainNode.gain.value = 2.0; // Increase volume
+    
+      // Connect: source -> gain -> destination
+      source.connect(gainNode);
+      gainNode.connect(ctx.destination);
+    
+      // Play audio
+      source.start(startTime);
+      // bump our queue pointer
+      queueTimeRef.current = startTime + audioBuffer.duration;
+
+      console.log('▶️ Audio playback started');
+      setStatus('🎵 Playing Gemini response...');
+    
+      // only when the last fragment finishes, reset status
+      source.onended = () => {
+        if (ctx.currentTime >= queueTimeRef.current) {
+          setStatus('🟢 Ready for next input');
+        }
+      };
+    
+    } catch (error) {
+      console.error('❌ Error playing audio:', error);
+      console.error('❌ Error stack:', error.stack);
+      setStatus('❌ Audio playback error: ' + error.message);
     }
-    
-    if (audioContextRef.current.state === 'suspended') {
-      console.log('🔧 Resuming suspended audio context');
-      await audioContextRef.current.resume();
-    }
-    
-    console.log('🔊 Audio context state:', audioContextRef.current.state);
-    
-    // Convert base64 to audio buffer
-    const binaryString = atob(base64Audio);
-    const bytes = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-    
-    console.log('📊 Decoded audio bytes:', bytes.length);
-    
-    // Extract sample rate from mimeType
-    const sampleRate = mimeType.includes('rate=24000') ? 24000 : 16000;
-    console.log('🎵 Using sample rate:', sampleRate);
-    
-    // Create audio buffer
-    const numSamples = bytes.length / 2; // 16-bit = 2 bytes per sample
-    const audioBuffer = audioContextRef.current.createBuffer(1, numSamples, sampleRate);
-    const channelData = audioBuffer.getChannelData(0);
-    
-    // Convert Int16 PCM to Float32 with proper signed conversion
-    const dataView = new DataView(bytes.buffer);
-    for (let i = 0; i < numSamples; i++) {
-      const sample = dataView.getInt16(i * 2, true); // little-endian
-      channelData[i] = sample / 32768.0; // Convert to float range [-1, 1]
-    }
-    
-    console.log('🎵 Audio buffer created:', {
-      duration: audioBuffer.duration,
-      sampleRate: audioBuffer.sampleRate,
-      length: audioBuffer.length,
-      channels: audioBuffer.numberOfChannels
-    });
-    
-    // Create and configure audio source
-    const source = audioContextRef.current.createBufferSource();
-    source.buffer = audioBuffer;
-    
-    // Add gain node for volume control
-    const gainNode = audioContextRef.current.createGain();
-    gainNode.gain.value = 2.0; // Increase volume
-    
-    // Connect: source -> gain -> destination
-    source.connect(gainNode);
-    gainNode.connect(audioContextRef.current.destination);
-    
-    // Play audio
-    source.start();
-    console.log('▶️ Audio playback started');
-    setStatus('🎵 Playing Gemini response...');
-    
-    // Update status when audio finishes
-    source.onended = () => {
-      console.log('⏹️ Audio playback finished');
-      setStatus('🟢 Ready for next input');
-    };
-    
-  } catch (error) {
-    console.error('❌ Error playing audio:', error);
-    console.error('❌ Error stack:', error.stack);
-    setStatus('❌ Audio playback error: ' + error.message);
-  }
 };
 
   const startRecording = async () => {
@@ -244,6 +273,10 @@ export const VoiceChat = () => {
         
       case 'setup_complete':
         setStatus('🟢 Ready to chat');
+        // reset our audio queue for a fresh conversation
+        if (audioContextRef.current) {
+          queueTimeRef.current = audioContextRef.current.currentTime;
+        }
         break;
         
       case 'text_response':
@@ -251,6 +284,7 @@ export const VoiceChat = () => {
         setConversation(prev => [...prev, {
           type: 'ai',
           content: message.text,
+          speaker: message.speaker || 'gemini',
           timestamp: new Date().toLocaleTimeString()
         }]);
         setStatus(`💬 Gemini responded`);
@@ -262,6 +296,9 @@ export const VoiceChat = () => {
         await playAudioResponse(message.data, message.mimeType);
         break;
         
+      case 'audio_transcription':
+        break;
+        
       case 'generation_complete':
         console.log('✅ Generation complete');
         break;
@@ -269,6 +306,9 @@ export const VoiceChat = () => {
       case 'turn_complete':
         console.log('✅ Turn complete');
         setStatus('🟢 Ready for next input');
+        if (audioContextRef.current) {
+          queueTimeRef.current = audioContextRef.current.currentTime;
+        }
         break;
         
       case 'error':
@@ -294,8 +334,6 @@ const stopRecording = () => {
       console.log('🛑 Recording stopped, processing...');
     }
   };
-
-
 
 const sendAudioToServer = async (audioBlob) => {
   try {
@@ -520,13 +558,15 @@ const testAudioPlayback = async () => {
               backgroundColor: msg.type === 'ai' ? '#e3f2fd' : '#f3e5f5',
               borderRadius: '8px'
             }}>
-              <strong>
-                {msg.type === 'ai' ? '🤖 Gemini' : '👤 You'} ({msg.timestamp}):
-              </strong>
-              <br />
-              {msg.content}
-            </div>
-          ))
+            <strong>
+              {msg.type === 'ai'
+                ? (msg.speaker === 'constellation' ? '🪐 Constellation' : '🤖 AI')
+                : '👤 You'} ({msg.timestamp}):
+            </strong>
+            <br />
+            {msg.content}
+          </div>
+        ))
         )}
       </div>
       
