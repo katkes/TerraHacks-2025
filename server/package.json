@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "dependencies": {
     "@google/genai": "^1.12.0",
     "@google/generative-ai": "^0.24.1",

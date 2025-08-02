@@ -1,5 +1,4 @@
 import express from 'express';
-import Story from '../models/Story.js';
 import { summarizeThemes } from '../services/gemini.js';
 
 const router = express.Router();
@@ -7,15 +6,20 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   try {
     const { text } = req.body;
+    
+    if (!text || text.trim().length === 0) {
+      return res.status(400).json({ error: 'Story text is required' });
+    }
+    
     const themes = await summarizeThemes(text);
 
-    const story = new Story({ text, themes });
-    await story.save();
-
-    res.json({ id: story._id, themes });
+    // Generate a simple ID or remove if not needed
+    const id = Date.now().toString();
+    
+    res.json({ id, themes });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to process story.' });
+    console.error('Error processing story:', err);
+    res.status(500).json({ error: 'Failed to process story: ' + err.message });
   }
 });
 
