@@ -1,6 +1,6 @@
 import StoryForm from "./StoryForm";
 import { StylizedButton } from "./components/StylizedButton";
-import { VoiceChat } from "./components/VoiceChat";
+// import { VoiceChat } from "./components/VoiceChat";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       
       <hr style={{ margin: '2rem 0' }} />
       
-      <VoiceChat />
+      {/* <VoiceChat /> */}
     </div>
   );
 }
