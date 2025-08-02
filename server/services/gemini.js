@@ -14,25 +14,35 @@ export async function summarizeThemes(text) {
   try {
     const prompt = `
       Extract the top 3 most prominent themes from this story.
-      Return a JSON array of strings, e.g. ["love","adventure","loss"].
+      Return ONLY a JSON array of strings, e.g. ["love","adventure","loss"].
+      Do not include any markdown formatting or code blocks.
 
       Story:
       """${text}"""
     `;
     
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash", // Updated model name
-      contents: [{ role: "user", parts: [{ text: prompt }] }], // Fixed contents format
+      model: "gemini-1.5-flash",
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
     });
     
-    // Extract the text from the response
-    const result = response.candidates[0].content.parts[0].text;
-    console.log('Generated themes:', result);
+    let result = response.candidates[0].content.parts[0].text;
+    console.log('Raw response:', result);
     
-    // Parse and return the JSON array
+    result = result.trim();
+    
+    if (result.startsWith('```json') || result.startsWith('```')) {
+      result = result.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
+    }
+    
+    result = result.replace(/`/g, '');
+    
+    console.log('Cleaned result:', result);
+    
     return JSON.parse(result);
   } catch (error) {
     console.error('Error in summarizeThemes:', error);
+    console.error('Failed to parse result:', result);
     throw new Error('Failed to generate themes');
   }
 }

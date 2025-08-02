@@ -13,10 +13,9 @@ router.post('/', async (req, res) => {
     
     const themes = await summarizeThemes(text);
 
-    // Generate a simple ID or remove if not needed
-    const id = Date.now().toString();
     
-    res.json({ id, themes });
+    
+    res.json({ themes });
   } catch (err) {
     console.error('Error processing story:', err);
     res.status(500).json({ error: 'Failed to process story: ' + err.message });
