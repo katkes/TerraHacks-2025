@@ -8,13 +8,14 @@ dotenv.config();
 const app = express();
 app.use(cors(), express.json());
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true, useUnifiedTopology: true
-});
+// TODO: Letting @Om to implement once Mongo is added to project
+// mongoose.connect(process.env.MONGO_URI, {
+//   useNewUrlParser: true, useUnifiedTopology: true
+// });
 
 app.use('/api/stories', storiesRouter);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000; 
 app.listen(PORT, () =>
   console.log(`Server listening on http://localhost:${PORT}`)
 );

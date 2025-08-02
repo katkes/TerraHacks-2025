@@ -1,5 +1,8 @@
-import { TextServiceClient } from '@google/generative-ai';
-const client = new TextServiceClient();
+import { GoogleGenAI } from "@google/genai";
+import dotenv from 'dotenv';
+
+dotenv.config();
+const ai = new GoogleGenAI({apiKey:process.env.GEMINI_API_KEY});
 
 export async function summarizeThemes(text) {
   const prompt = `
@@ -9,21 +12,9 @@ export async function summarizeThemes(text) {
     Story:
     """${text}"""
   `;
-  const [resp] = await client.generateText({
-    model: 'models/text-bison-001',
-    prompt: { text: prompt.trim() },
-    temperature: 0.2,
-    maxOutputTokens: 128
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt,
   });
-
-  try {
-    return JSON.parse(resp.text);
-  } catch {
-    return resp.text
-      .replace(/[\[\]"']/g, '')
-      .split(/,|\n/)
-      .map(s => s.trim())
-      .filter(Boolean)
-      .slice(0, 3);
-  }
+  console.log(response.text);
 }
