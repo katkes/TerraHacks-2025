@@ -30,21 +30,37 @@ const renderSummarizedMessage = (summarizedMessage) => {
 export default function StoryForm() {
   const [text, setText] = useState("");
   const [themes, setThemes] = useState([]);
-  const [summarizedMessage, setSummarizedMessage] = useState([]);
+  const [summary, setSummary] = useState("");
   const [error, setError] = useState("");
+  const [canCreate, setCanCreate] = useState(false);
+  const [createdId, setCreatedId] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post("/api/stories", { text });
-      console.log("data: ", data);
-      console.log("data.themes: ", data.themes);
-      console.log("data.summary: ", data.summary);
       setThemes(data.themes);
-      setSummarizedMessage(data.summary);
+      setSummary(data.summary);
       setError("");
+      setCanCreate(true);
+      setCreatedId(null);
     } catch {
       setError("Failed to summarize. Try again.");
+    }
+  };
+
+  // New: POST to /create
+  const handleCreatePost = async () => {
+    try {
+      const { data } = await axios.post("/api/stories/create", {
+        storyText: text,
+        summary,
+        themes,
+      });
+      setCreatedId(data.storyId);
+      setCanCreate(false);
+    } catch {
+      setError("Failed to create post.");
     }
   };
 
@@ -103,12 +119,20 @@ export default function StoryForm() {
       </form>
       <div>
         {error && <p>{error}</p>}
-        {themes && themes.length > 0 && renderThemeList(themes)}
-        {summarizedMessage &&
-          summarizedMessage.length > 0 &&
-          renderSummarizedMessage(summarizedMessage)}
+        {themes.length > 0 && (
+          <>
+            {renderThemeList(themes)}
+            {renderSummarizedMessage(summary)}
+            {canCreate && (
+              <StylizedButton type="button" onClick={handleCreatePost}>
+                Create Post
+              </StylizedButton>
+            )}
+            {createdId && <p>Post created: {createdId}</p>}
+          </>
+        )}
       </div>
-      <VoiceChat></VoiceChat>
+      <VoiceChat />
     </div>
   );
 }
