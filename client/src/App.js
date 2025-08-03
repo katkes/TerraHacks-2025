@@ -11,6 +11,9 @@ function App() {
       }}
     >
       <StoryForm />
+      
+      <hr style={{ margin: '2rem 0' }} />
+      
     </div>
   );
 }
