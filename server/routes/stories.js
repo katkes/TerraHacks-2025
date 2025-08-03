@@ -41,4 +41,27 @@ router.post("/create", async (req, res) => {
   }
 });
 
+// New: return live data for graph
+router.get("/graph", async (req, res) => {
+  try {
+    const docs = await Story.find().lean();
+    const nodes = docs.map(doc => ({
+      id: doc.storyId,
+      data: {
+        alias: doc.alias,
+        storyText: doc.storyText,
+        insightText: doc.insightText,
+        themes: doc.themes
+        // you can inject a `topic` or other fields here if you store them
+      }
+    }));
+    // simple empty links array for now
+    const links = [];
+    res.json({ nodes, links });
+  } catch (err) {
+    console.error("Error fetching graph data:", err);
+    res.status(500).json({ error: "Failed to fetch graph data" });
+  }
+});
+
 export default router;
