@@ -2195,16 +2195,6 @@ video {
   color: rgb(59 130 246 / var(--tw-text-opacity, 1));
 }
 
-.text-stone-200 {
-  --tw-text-opacity: 1;
-  color: rgb(231 229 228 / var(--tw-text-opacity, 1));
-}
-
-.text-stone-300 {
-  --tw-text-opacity: 1;
-  color: rgb(214 211 209 / var(--tw-text-opacity, 1));
-}
-
 .text-stone-600 {
   --tw-text-opacity: 1;
   color: rgb(87 83 78 / var(--tw-text-opacity, 1));
@@ -2212,7 +2202,12 @@ video {
 
 .text-terrahacks-gray {
   --tw-text-opacity: 1;
-  color: rgb(105 103 102 / var(--tw-text-opacity, 1));
+  color: rgb(68 77 81 / var(--tw-text-opacity, 1));
+}
+
+.text-terrahacks-lightgray {
+  --tw-text-opacity: 1;
+  color: rgb(68 77 81 / var(--tw-text-opacity, 1));
 }
 
 .text-white {
