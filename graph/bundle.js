@@ -262,20 +262,23 @@ function populateGraph() {
 // }
 
 function getRandomNodeId() {
-  console.log(json.nodes);
   if (json.nodes.length === 0) return null;
   const randomIndex = Math.floor(Math.random() * json.nodes.length);
-  return json.nodes[randomIndex];
+  return json.nodes[randomIndex].id;
 }
 
-// function cycleThroughNodes() {
-//   setInterval(() => {
-//     const randomNode = getRandomNodeId();
-//     if (randomNode && activateCycle) {
-//       showNodeDetails(randomNode);
-//     }
-//   }, 10000);
-// }
+function showRandomNode() {
+  const randomNode = getRandomNodeId();
+  if (randomNode && activateCycle) {
+    showNodeDetails(graph.getNode(randomNode));
+  }
+}
+
+function cycleThroughNodes() {
+  setInterval(() => {
+    showRandomNode();
+  }, 2000);
+}
 
 function showSearchBar() {
   if (document.getElementById("searchBarContainer")) {
@@ -395,8 +398,8 @@ function searchByNameOrSchool(nodes, query) {
 
 // uncomment this if you want search in the graph
 // showSearchBar();
-
-// cycleThroughNodes();
+showRandomNode();
+cycleThroughNodes();
 
 },{"./graphData.json":1,"config.pixel":4,"ngraph.graph":39,"ngraph.pixel":49}],3:[function(require,module,exports){
 /**
