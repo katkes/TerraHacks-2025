@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { StylizedButton } from "./StylizedButton";
+import { VoiceChat } from "./VoiceChat";
 
 const renderThemeList = (themes) => {
   return (
@@ -107,6 +108,7 @@ export default function StoryForm() {
           summarizedMessage.length > 0 &&
           renderSummarizedMessage(summarizedMessage)}
       </div>
+      <VoiceChat></VoiceChat>
     </div>
   );
 }
