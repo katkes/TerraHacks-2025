@@ -41,7 +41,6 @@ router.post("/create", async (req, res) => {
   }
 });
 
-// New: return live data for graph
 router.get("/graph", async (req, res) => {
   try {
     const docs = await Story.find().lean();
