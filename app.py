@@ -100,7 +100,7 @@ def get_graph_data():
                 common_themes = themes1.intersection(themes2)
 
                 # Link condition: at least 2 common themes
-                if len(common_themes) >= 2:
+                if len(common_themes) >= 1:
                     # Calculate a simple strength score (can be refined)
                     # max(..., 1) prevents division by zero if a story has no themes
                     strength = len(common_themes) / max(len(themes1), len(themes2))
@@ -154,8 +154,6 @@ def search_story():
 
     try:
         # Perform an exact, case-insensitive match on the 'alias' field
-        # '$regex': f"^{query}$" ensures a full string match (from start ^ to end $)
-        # '$options': 'i' makes the search case-insensitive
         matching_stories_cursor = storiesCollection.find(
             {"alias": {"$regex": f"^{query}$", "$options": "i"}}
         )
@@ -169,6 +167,53 @@ def search_story():
         return jsonify({"error": "An error occurred during search."}), 500
 
     return jsonify({"matched_ids": matched_ids}), 200
+
+@app.route('/submit-multiple-stories', methods=['POST']) # New endpoint name
+def submit_multiple_stories():
+    stories_data = request.json # Expects a list of story dicts
+    if not isinstance(stories_data, list):
+        return jsonify({"error": "Request body must be a list of stories."}), 400
+
+    inserted_ids = []
+    errors = []
+
+    for story_data in stories_data:
+        alias = story_data.get('alias', 'Anonymous')
+        story_text = story_data.get('storyText')
+        insight_text = story_data.get('insightText')
+        themes = story_data.get('themes', [])
+
+        if not story_text or not insight_text:
+            errors.append({"error": "Story and insight text are required for one or more entries."})
+            continue # Skip to next story in the list
+
+        story_id = f"STORY-{uuid.uuid4().hex[:8].upper()}"
+
+        new_story_doc = {
+            "storyId": story_id,
+            "alias": alias,
+            "storyText": story_text,
+            "insightText": insight_text,
+            "themes": themes,
+        }
+
+        try:
+            storiesCollection.insert_one(new_story_doc)
+            inserted_ids.append({"storyId": story_id, "alias": alias})
+        except Exception as e:
+            errors.append({"error": f"Failed to insert story for alias {alias}: {str(e)}"})
+
+    if errors:
+        return jsonify({
+            "message": "Some stories were processed, but with errors.",
+            "inserted_stories": inserted_ids,
+            "errors": errors
+        }), 207 # 207 Multi-Status
+    else:
+        return jsonify({
+            "message": f"Successfully submitted {len(inserted_ids)} stories!",
+            "inserted_stories": inserted_ids
+        }), 201
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
