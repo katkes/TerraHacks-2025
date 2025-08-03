@@ -1,6 +1,6 @@
 const graphConfig = {
   nodeColor: 0xe8c6a5, // (#C6492C)
-  nodeSize: 100,
+  nodeSize: 80,
   nodeHoverColor: 0x296c82, // (#296C82)
   nodeConnectionColor: 0x296c82, // (#296C82)
   linkFromColor: 0x296c82, // (#296C82)

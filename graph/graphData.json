@@ -6,7 +6,20 @@
     { "source": "STORY-C9D8E1F3", "target": "STORY-91A2CA74" },
     { "source": "STORY-F0A1B23C", "target": "STORY-9139D02B" },
     { "source": "STORY-8C2E4D76", "target": "STORY-E54784AC" },
-    { "source": "STORY-D3E9A75B", "target": "STORY-AD1357B2" }
+    { "source": "STORY-D3E9A75B", "target": "STORY-AD1357B2" },
+    { "source": "STORY-2A9B4C01", "target": "STORY-C9D8E1F3" },
+    { "source": "STORY-4C5D6E7F", "target": "STORY-8C2E4D76" },
+    { "source": "STORY-6F7D8E90", "target": "STORY-B4EEA1F0" },
+    { "source": "STORY-1AB2C3D4", "target": "STORY-91A2CA74" },
+    { "source": "STORY-3E4F5A60", "target": "STORY-E54784AC" },
+    { "source": "STORY-8D9E0F12", "target": "STORY-AD1357B2" },
+    { "source": "STORY-5B6C7D85", "target": "STORY-F0A1B23C" },
+    { "source": "STORY-A1B2C3D8", "target": "STORY-7A435B41" },
+
+    { "source": "STORY-219D9A19", "target": "STORY-9139D02B" },
+    { "source": "STORY-B4EEA1F0", "target": "STORY-7A435B41" },
+    { "source": "STORY-E54784AC", "target": "STORY-57C21C48" },
+    { "source": "STORY-91A2CA74", "target": "STORY-C9D8E1F3" }
   ],
   "nodes": [
     {
@@ -116,6 +129,78 @@
         "storyText": "Despite leading major projects I'm convinced someone will realize I'm a fraud who just got lucky."
       },
       "id": "STORY-D3E9A75B"
+    },
+    {
+      "data": {
+        "alias": "BraveWarrior",
+        "topic": "PTSD",
+        "insightText": "Flashbacks still visit me, but grounding techniques—naming five things I see and four I can touch—pull me back to safety.",
+        "storyText": "I survived a car crash last year and loud bangs still send me back to that highway. Some nights I wake up sweating, convinced I'm there again."
+      },
+      "id": "STORY-2A9B4C01"
+    },
+    {
+      "data": {
+        "alias": "MirrorMuse",
+        "topic": "Body Image",
+        "insightText": "Shifting focus from appearance to functionality—what my body lets me do—has softened my inner critic.",
+        "storyText": "Ever since high-school comments about my weight, mirrors felt like enemies. Lately I'm learning to appreciate how strong my legs feel after a run."
+      },
+      "id": "STORY-4C5D6E7F"
+    },
+    {
+      "data": {
+        "alias": "FocusFinder",
+        "topic": "ADHD",
+        "insightText": "Short, timed sprints with clear rewards help me channel restless energy into progress.",
+        "storyText": "Deadlines loom but my mind pinballs between tabs. Pomodoro sessions and body-doubling with a friend keep me on track."
+      },
+      "id": "STORY-6F7D8E90"
+    },
+    {
+      "data": {
+        "alias": "ClearMind",
+        "topic": "Substance Use",
+        "insightText": "Replacing the evening drink with a mocktail ritual and accountability texts made sobriety sustainable, not lonely.",
+        "storyText": "After ‘just one beer’ became four every night, I joined an online support group. Day 60 feels lighter than I imagined."
+      },
+      "id": "STORY-1AB2C3D4"
+    },
+    {
+      "data": {
+        "alias": "QuietConnector",
+        "topic": "Social Anxiety",
+        "insightText": "Reframing nerves as excitement—and preparing two genuine questions—helps me enter conversations with purpose.",
+        "storyText": "Networking events used to send me to the bathroom to hide. Now I set a goal of speaking to one new person and leaving when I’ve met it."
+      },
+      "id": "STORY-3E4F5A60"
+    },
+    {
+      "data": {
+        "alias": "BudgetBoss",
+        "topic": "Financial Stress",
+        "insightText": "Zero-based budgeting gave every dollar a job—and gave my brain a rest from constant worry.",
+        "storyText": "Payday euphoria vanished once bills hit. Tracking expenses weekly showed leaks I could plug, and the panic eased."
+      },
+      "id": "STORY-8D9E0F12"
+    },
+    {
+      "data": {
+        "alias": "CalmCurrent",
+        "topic": "Anger Management",
+        "insightText": "Pausing to label the feeling—anger, frustration, or hurt—defuses the surge before words escape.",
+        "storyText": "I’d snap at tiny inconveniences. Breathing apps and a ‘walk-it-off’ rule kept me from regrettable emails."
+      },
+      "id": "STORY-5B6C7D85"
+    },
+    {
+      "data": {
+        "alias": "TimelyTiger",
+        "topic": "Procrastination",
+        "insightText": "Starting with the two-minute version of a task tricks my brain past the dread wall.",
+        "storyText": "My thesis gathered dust until I promised myself I’d only open the document. Two minutes became two pages."
+      },
+      "id": "STORY-A1B2C3D8"
     }
   ]
 }
