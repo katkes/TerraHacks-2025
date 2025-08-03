@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { StylizedButton } from "./StylizedButton";
 
-const themeList = (themes) => {
+const renderThemeList = (themes) => {
   return (
-    <div className="mt-4">
+    <div>
       <h3 className="font-semibold">Top 3 Themes:</h3>
       <ul className="list-disc list-inside">
         {themes.map((t, i) => (
@@ -16,16 +16,31 @@ const themeList = (themes) => {
   );
 };
 
+const renderSummarizedMessage = (summarizedMessage) => {
+  console.log("Summarized Message:", summarizedMessage);
+  return (
+    <div>
+      <h3 className="font-semibold">Summary:</h3>
+      <pre>{summarizedMessage}</pre>
+    </div>
+  );
+};
+
 export default function StoryForm() {
   const [text, setText] = useState("");
   const [themes, setThemes] = useState([]);
+  const [summarizedMessage, setSummarizedMessage] = useState([]);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post("/api/stories", { text });
+      console.log("data: ", data);
+      console.log("data.themes: ", data.themes);
+      console.log("data.summary: ", data.summary);
       setThemes(data.themes);
+      setSummarizedMessage(data.summary);
       setError("");
     } catch {
       setError("Failed to summarize. Try again.");
@@ -42,14 +57,14 @@ export default function StoryForm() {
           width: "100%",
         }}
       >
-        <h1>Talk To Me</h1>
+        <h1>Hey there. Talk to me. </h1>
       </div>
       <form onSubmit={handleSubmit}>
         <div
           style={{ display: "flex", justifyContent: "center", width: "100%" }}
         >
           <textarea
-            rows={6}
+            rows={3}
             style={{
               border: "1px solid #D1D5DB",
               padding: "1rem",
@@ -87,7 +102,10 @@ export default function StoryForm() {
       </form>
       <div>
         {error && <p>{error}</p>}
-        {themes.length > 0 && themeList(themes)}
+        {themes && themes.length > 0 && renderThemeList(themes)}
+        {summarizedMessage &&
+          summarizedMessage.length > 0 &&
+          renderSummarizedMessage(summarizedMessage)}
       </div>
     </div>
   );
