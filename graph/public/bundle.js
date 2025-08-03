@@ -1,80 +1,115 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 module.exports={
-  "links": [
-    {
-      "source": "STORY-57C21C48",
-      "target": "STORY-E54784AC"
-    }
-  ],
   "nodes": [
     {
+      "id": "user_001",
       "data": {
-        "alias": "ResilientRunner",
-        "insightText": "Recognizing that this feeling is temporary and reaching out, even in small ways, can make a difference. Taking one small step at a time helps me to keep going.",
-        "storyText": "I've been feeling quite isolated lately, and it's hard to find the motivation to do anything. Simple tasks feel overwhelming."
-      },
-      "id": "STORY-57C21C48"
+        "name": "John Smith",
+        "major": "MBA Program",
+        "response": "I think time management is crucial for productivity. I usually start my day by prioritizing tasks and setting realistic deadlines.",
+        "topMatch": "user_005"
+      }
     },
     {
+      "id": "user_002",
       "data": {
-        "alias": "MindfulMaven",
-        "insightText": "Mindfulness exercises, even just 5 minutes a day, have helped me ground myself. I'm learning to accept that my best is enough, even if it's not 'perfect'.",
-        "storyText": "My anxiety has been through the roof with all the deadlines at work. I can't seem to quiet my mind, and I often feel like I'm not doing enough."
-      },
-      "id": "STORY-219D9A19"
+        "name": "Sarah Johnson",
+        "major": "Computer Science",
+        "response": "My approach to problem-solving involves breaking down complex issues into smaller, manageable components and tackling them systematically.",
+        "topMatch": "user_006"
+      }
     },
     {
+      "id": "user_003",
       "data": {
-        "alias": "QuietThinker",
-        "insightText": "True friends will listen without judgment. It's a sign of strength, not weakness, to share your vulnerabilities. They want to support you.",
-        "storyText": "Sometimes I feel like I'm a burden to my friends when I talk about my struggles. It's hard to open up, and I often just bottle things up instead."
-      },
-      "id": "STORY-9139D02B"
+        "name": "Michael Brown",
+        "major": "Engineering",
+        "response": "I believe effective communication is the foundation of successful teamwork. Clear expectations and regular feedback loops are essential.",
+        "topMatch": "user_006"
+      }
     },
     {
+      "id": "user_004",
       "data": {
-        "alias": "HopefulHeart",
-        "insightText": "Even on the darkest days, finding one small thing to be grateful for, or just stepping outside for a moment, can offer a tiny ray of hope. Progress isn't linear, and that's okay.",
-        "storyText": "I've been battling depression for years, and some days it feels like a heavy cloud. Getting out of bed can be a monumental effort."
-      },
-      "id": "STORY-91A2CA74"
+        "name": "Emily Davis",
+        "major": "Psychology",
+        "response": "When facing challenges, I try to maintain a growth mindset and view obstacles as opportunities to learn and develop new skills.",
+        "topMatch": "user_007"
+      }
     },
     {
+      "id": "user_005",
       "data": {
-        "alias": "SocialButterfly",
-        "insightText": "Quality over quantity in relationships is key. Seeking genuine connections, even with just one or two people, can fill that void more than superficial interactions.",
-        "storyText": "Despite being around people, I often feel very lonely. It's like I'm performing, but not truly connecting, which leaves me feeling empty."
-      },
-      "id": "STORY-E54784AC"
+        "name": "David Wilson",
+        "major": "Business Administration",
+        "response": "I find that setting SMART goals helps me stay focused and motivated. Specific, measurable objectives make it easier to track progress.",
+        "topMatch": "user_001"
+      }
     },
     {
+      "id": "user_006",
       "data": {
-        "alias": "GrowthSeeker",
-        "insightText": "It's a common experience, especially among high-achievers. Acknowledging your accomplishments and focusing on continuous learning, rather than perfection, helps to build self-worth.",
-        "storyText": "I sometimes struggle with imposter syndrome, feeling like I'm not good enough despite my achievements. The fear of being 'found out' is constant."
-      },
-      "id": "STORY-7A435B41"
+        "name": "Lisa Garcia",
+        "major": "Marketing",
+        "response": "Collaboration and diverse perspectives often lead to more innovative solutions than working in isolation.",
+        "topMatch": "user_002"
+      }
+    },
+    {
+      "id": "user_007",
+      "data": {
+        "name": "Robert Martinez",
+        "major": "N/A",
+        "response": "I believe in continuous learning and staying updated with industry trends to remain competitive in today's fast-paced environment.",
+        "topMatch": "user_004"
+      }
+    },
+    {
+      "id": "user_008",
+      "data": {
+        "name": "Jennifer Lee",
+        "major": "Health Sciences",
+        "response": "Mindfulness and stress management techniques have significantly improved my work-life balance and overall well-being.",
+        "topMatch": "user_001"
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "user_001",
+      "target": "user_005"
+    },
+    {
+      "source": "user_004",
+      "target": "user_007"
+    },
+    {
+      "source": "user_005",
+      "target": "user_001"
+    },
+    {
+      "source": "user_007",
+      "target": "user_004"
     }
   ]
 }
-
 },{}],2:[function(require,module,exports){
 const graphConfig = {
   nodeColor: 0xe8c6a5, // (#C6492C)
   nodeSize: 100,
-  nodeHoverColor: 0x296c82, // (#296C82)
-  nodeConnectionColor: 0x296c82, // (#296C82)
-  linkFromColor: 0x296c82, // (#296C82)
-  linkToColor: 0x296c82, // (#296C82)
+  nodeHoverColor: 0xffe213, // (#ffe213)
+  nodeConnectionColor: 0xffe213, // (#a9ba22)
+  linkFromColor: 0x732196, // (#a33f3f)
+  linkToColor: 0xc6492c, // (#35130b)
   linkConnectionFromColor: 0xffffff, // (#ffffff)
-  linkConnectionToColor: 0xffffff, // (#ffffff)
+  linkConnectionToColor: 0xffe213, // (#ffe213)
   springLength: 200,
   springCoeff: 0.001,
   gravity: -10,
   theta: 0.2,
   dragCoeff: 0.3,
   timeStep: 5,
-  backgroundColor: 0xafd6e2,
+  backgroundColor: 0xbcd485,
 };
 
 var createSettingsView = require("config.pixel");
@@ -114,11 +149,17 @@ simulator.theta(graphConfig.theta);
 simulator.dragCoeff(graphConfig.dragCoeff);
 simulator.timeStep(graphConfig.timeStep);
 renderer.focus();
-// var settingsView = createSettingsView(renderer);
-// var gui = settingsView.gui();
+var settingsView = createSettingsView(renderer);
+var gui = settingsView.gui();
 
 renderer.on("nodehover", showNodeDetails);
 renderer.on("nodeclick", resetNodeDetails);
+
+const nodeAttendees = document.getElementById("nodeAttendees").textContent;
+console.log(nodeAttendees);
+document.getElementById(
+  "nodeAttendees"
+).textContent = `${json.nodes.length} People`;
 
 function showNodeDetails(node) {
   if (!node) {
@@ -130,12 +171,13 @@ function showNodeDetails(node) {
 
   // Update node details
   document.getElementById("nodeName").textContent =
-    node.data.alias.toUpperCase();
+    node.data.name.toUpperCase();
   document.getElementById("nodeMajor").textContent =
-    node.data.alias && node.data.alias != "N/A" ? node.data.alias : "";
-
-  document.getElementById("nodeDescription").textContent =
-    node.data.insightText;
+    node.data.major && node.data.major != "N/A" ? node.data.major : "";
+  document.getElementById("nodeConnections").textContent = `${
+    graph.getLinks(node.id)?.length || 0
+  } Potential Connections`;
+  document.getElementById("nodeDescription").textContent = node.data.response;
 
   const topMatch = node.data.topMatch;
   const topMatchNode = graph.getNode(topMatch);

@@ -9,8 +9,9 @@ module.exports = {
         "untitled-sans": ["'Untitled Sans'", "sans-serif"],
       },
       colors: {
-        "terrahacks-gray": "#696766",
-        "terrhacks-green": "#C8D183",
+        "terrahacks-gray": "#FBF8EF",
+        "terrahacks-lightgray": "#696766",
+        "terrahacks-green": "#C8D183",
       },
     },
   },

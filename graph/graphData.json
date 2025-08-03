@@ -1,94 +1,58 @@
 {
-  "nodes": [
-    {
-      "id": "user_001",
-      "data": {
-        "name": "John Smith",
-        "major": "MBA Program",
-        "response": "I think time management is crucial for productivity. I usually start my day by prioritizing tasks and setting realistic deadlines.",
-        "topMatch": "user_005"
-      }
-    },
-    {
-      "id": "user_002",
-      "data": {
-        "name": "Sarah Johnson",
-        "major": "Computer Science",
-        "response": "My approach to problem-solving involves breaking down complex issues into smaller, manageable components and tackling them systematically.",
-        "topMatch": "user_006"
-      }
-    },
-    {
-      "id": "user_003",
-      "data": {
-        "name": "Michael Brown",
-        "major": "Engineering",
-        "response": "I believe effective communication is the foundation of successful teamwork. Clear expectations and regular feedback loops are essential.",
-        "topMatch": "user_006"
-      }
-    },
-    {
-      "id": "user_004",
-      "data": {
-        "name": "Emily Davis",
-        "major": "Psychology",
-        "response": "When facing challenges, I try to maintain a growth mindset and view obstacles as opportunities to learn and develop new skills.",
-        "topMatch": "user_007"
-      }
-    },
-    {
-      "id": "user_005",
-      "data": {
-        "name": "David Wilson",
-        "major": "Business Administration",
-        "response": "I find that setting SMART goals helps me stay focused and motivated. Specific, measurable objectives make it easier to track progress.",
-        "topMatch": "user_001"
-      }
-    },
-    {
-      "id": "user_006",
-      "data": {
-        "name": "Lisa Garcia",
-        "major": "Marketing",
-        "response": "Collaboration and diverse perspectives often lead to more innovative solutions than working in isolation.",
-        "topMatch": "user_002"
-      }
-    },
-    {
-      "id": "user_007",
-      "data": {
-        "name": "Robert Martinez",
-        "major": "N/A",
-        "response": "I believe in continuous learning and staying updated with industry trends to remain competitive in today's fast-paced environment.",
-        "topMatch": "user_004"
-      }
-    },
-    {
-      "id": "user_008",
-      "data": {
-        "name": "Jennifer Lee",
-        "major": "Health Sciences",
-        "response": "Mindfulness and stress management techniques have significantly improved my work-life balance and overall well-being.",
-        "topMatch": "user_001"
-      }
-    }
-  ],
   "links": [
     {
-      "source": "user_001",
-      "target": "user_005"
+      "source": "STORY-57C21C48",
+      "target": "STORY-E54784AC"
+    }
+  ],
+  "nodes": [
+    {
+      "data": {
+        "alias": "ResilientRunner",
+        "insightText": "Recognizing that this feeling is temporary and reaching out, even in small ways, can make a difference. Taking one small step at a time helps me to keep going.",
+        "storyText": "I've been feeling quite isolated lately, and it's hard to find the motivation to do anything. Simple tasks feel overwhelming."
+      },
+      "id": "STORY-57C21C48"
     },
     {
-      "source": "user_004",
-      "target": "user_007"
+      "data": {
+        "alias": "MindfulMaven",
+        "insightText": "Mindfulness exercises, even just 5 minutes a day, have helped me ground myself. I'm learning to accept that my best is enough, even if it's not 'perfect'.",
+        "storyText": "My anxiety has been through the roof with all the deadlines at work. I can't seem to quiet my mind, and I often feel like I'm not doing enough."
+      },
+      "id": "STORY-219D9A19"
     },
     {
-      "source": "user_005",
-      "target": "user_001"
+      "data": {
+        "alias": "QuietThinker",
+        "insightText": "True friends will listen without judgment. It's a sign of strength, not weakness, to share your vulnerabilities. They want to support you.",
+        "storyText": "Sometimes I feel like I'm a burden to my friends when I talk about my struggles. It's hard to open up, and I often just bottle things up instead."
+      },
+      "id": "STORY-9139D02B"
     },
     {
-      "source": "user_007",
-      "target": "user_004"
+      "data": {
+        "alias": "HopefulHeart",
+        "insightText": "Even on the darkest days, finding one small thing to be grateful for, or just stepping outside for a moment, can offer a tiny ray of hope. Progress isn't linear, and that's okay.",
+        "storyText": "I've been battling depression for years, and some days it feels like a heavy cloud. Getting out of bed can be a monumental effort."
+      },
+      "id": "STORY-91A2CA74"
+    },
+    {
+      "data": {
+        "alias": "SocialButterfly",
+        "insightText": "Quality over quantity in relationships is key. Seeking genuine connections, even with just one or two people, can fill that void more than superficial interactions.",
+        "storyText": "Despite being around people, I often feel very lonely. It's like I'm performing, but not truly connecting, which leaves me feeling empty."
+      },
+      "id": "STORY-E54784AC"
+    },
+    {
+      "data": {
+        "alias": "GrowthSeeker",
+        "insightText": "It's a common experience, especially among high-achievers. Acknowledging your accomplishments and focusing on continuous learning, rather than perfection, helps to build self-worth.",
+        "storyText": "I sometimes struggle with imposter syndrome, feeling like I'm not good enough despite my achievements. The fear of being 'found out' is constant."
+      },
+      "id": "STORY-7A435B41"
     }
   ]
 }

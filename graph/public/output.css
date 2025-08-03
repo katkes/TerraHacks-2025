@@ -2212,11 +2212,6 @@ video {
 
 .text-terrahacks-gray {
   --tw-text-opacity: 1;
-  color: rgb(251 248 239 / var(--tw-text-opacity, 1));
-}
-
-.text-terrahacks-lightgray {
-  --tw-text-opacity: 1;
   color: rgb(105 103 102 / var(--tw-text-opacity, 1));
 }
 

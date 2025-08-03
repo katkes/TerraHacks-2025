@@ -1,19 +1,19 @@
 const graphConfig = {
   nodeColor: 0xe8c6a5, // (#C6492C)
   nodeSize: 100,
-  nodeHoverColor: 0xffe213, // (#ffe213)
-  nodeConnectionColor: 0xffe213, // (#a9ba22)
-  linkFromColor: 0x732196, // (#a33f3f)
-  linkToColor: 0xc6492c, // (#35130b)
+  nodeHoverColor: 0x296c82, // (#296C82)
+  nodeConnectionColor: 0x296c82, // (#296C82)
+  linkFromColor: 0x296c82, // (#296C82)
+  linkToColor: 0x296c82, // (#296C82)
   linkConnectionFromColor: 0xffffff, // (#ffffff)
-  linkConnectionToColor: 0xffe213, // (#ffe213)
+  linkConnectionToColor: 0xffffff, // (#ffffff)
   springLength: 200,
   springCoeff: 0.001,
   gravity: -10,
   theta: 0.2,
   dragCoeff: 0.3,
   timeStep: 5,
-  backgroundColor: 0xbcd485,
+  backgroundColor: 0xafd6e2,
 };
 
 var createSettingsView = require("config.pixel");
@@ -53,17 +53,11 @@ simulator.theta(graphConfig.theta);
 simulator.dragCoeff(graphConfig.dragCoeff);
 simulator.timeStep(graphConfig.timeStep);
 renderer.focus();
-var settingsView = createSettingsView(renderer);
-var gui = settingsView.gui();
+// var settingsView = createSettingsView(renderer);
+// var gui = settingsView.gui();
 
 renderer.on("nodehover", showNodeDetails);
 renderer.on("nodeclick", resetNodeDetails);
-
-const nodeAttendees = document.getElementById("nodeAttendees").textContent;
-console.log(nodeAttendees);
-document.getElementById(
-  "nodeAttendees"
-).textContent = `${json.nodes.length} People`;
 
 function showNodeDetails(node) {
   if (!node) {
@@ -75,13 +69,12 @@ function showNodeDetails(node) {
 
   // Update node details
   document.getElementById("nodeName").textContent =
-    node.data.name.toUpperCase();
+    node.data.alias.toUpperCase();
   document.getElementById("nodeMajor").textContent =
-    node.data.major && node.data.major != "N/A" ? node.data.major : "";
-  document.getElementById("nodeConnections").textContent = `${
-    graph.getLinks(node.id)?.length || 0
-  } Potential Connections`;
-  document.getElementById("nodeDescription").textContent = node.data.response;
+    node.data.alias && node.data.alias != "N/A" ? node.data.alias : "";
+
+  document.getElementById("nodeDescription").textContent =
+    node.data.insightText;
 
   const topMatch = node.data.topMatch;
   const topMatchNode = graph.getNode(topMatch);
