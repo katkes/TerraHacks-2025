@@ -16,7 +16,6 @@ const graphConfig = {
   backgroundColor: 0xafd6e2,
 };
 
-var createSettingsView = require("config.pixel");
 const json = require("./graphData.json");
 var graph = populateGraph();
 var renderGraph = require("ngraph.pixel");
@@ -69,7 +68,7 @@ function showNodeDetails(node) {
 
   // Update node details
   document.getElementById("nodeName").textContent =
-    node.data.alias.toUpperCase();
+    node.data.topic.toUpperCase();
   document.getElementById("nodeMajor").textContent =
     node.data.alias && node.data.alias != "N/A" ? node.data.alias : "";
 
@@ -213,12 +212,6 @@ function showRandomNode() {
   }
 }
 
-function cycleThroughNodes() {
-  setInterval(() => {
-    showRandomNode();
-  }, 2000);
-}
-
 function showSearchBar() {
   if (document.getElementById("searchBarContainer")) {
     document.getElementById("searchBarContainer").remove();
@@ -338,4 +331,3 @@ function searchByNameOrSchool(nodes, query) {
 // uncomment this if you want search in the graph
 // showSearchBar();
 showRandomNode();
-cycleThroughNodes();

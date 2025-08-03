@@ -1,14 +1,18 @@
 {
   "links": [
-    {
-      "source": "STORY-57C21C48",
-      "target": "STORY-E54784AC"
-    }
+    { "source": "STORY-57C21C48", "target": "STORY-E54784AC" },
+    { "source": "STORY-B4EEA1F0", "target": "STORY-219D9A19" },
+    { "source": "STORY-AD1357B2", "target": "STORY-7A435B41" },
+    { "source": "STORY-C9D8E1F3", "target": "STORY-91A2CA74" },
+    { "source": "STORY-F0A1B23C", "target": "STORY-9139D02B" },
+    { "source": "STORY-8C2E4D76", "target": "STORY-E54784AC" },
+    { "source": "STORY-D3E9A75B", "target": "STORY-AD1357B2" }
   ],
   "nodes": [
     {
       "data": {
         "alias": "ResilientRunner",
+        "topic": "Isolation",
         "insightText": "Recognizing that this feeling is temporary and reaching out, even in small ways, can make a difference. Taking one small step at a time helps me to keep going.",
         "storyText": "I've been feeling quite isolated lately, and it's hard to find the motivation to do anything. Simple tasks feel overwhelming."
       },
@@ -17,6 +21,7 @@
     {
       "data": {
         "alias": "MindfulMaven",
+        "topic": "Anxiety",
         "insightText": "Mindfulness exercises, even just 5 minutes a day, have helped me ground myself. I'm learning to accept that my best is enough, even if it's not 'perfect'.",
         "storyText": "My anxiety has been through the roof with all the deadlines at work. I can't seem to quiet my mind, and I often feel like I'm not doing enough."
       },
@@ -25,6 +30,7 @@
     {
       "data": {
         "alias": "QuietThinker",
+        "topic": "Anxiety",
         "insightText": "True friends will listen without judgment. It's a sign of strength, not weakness, to share your vulnerabilities. They want to support you.",
         "storyText": "Sometimes I feel like I'm a burden to my friends when I talk about my struggles. It's hard to open up, and I often just bottle things up instead."
       },
@@ -33,6 +39,7 @@
     {
       "data": {
         "alias": "HopefulHeart",
+        "topic": "Depression",
         "insightText": "Even on the darkest days, finding one small thing to be grateful for, or just stepping outside for a moment, can offer a tiny ray of hope. Progress isn't linear, and that's okay.",
         "storyText": "I've been battling depression for years, and some days it feels like a heavy cloud. Getting out of bed can be a monumental effort."
       },
@@ -41,6 +48,7 @@
     {
       "data": {
         "alias": "SocialButterfly",
+        "topic": "Loneliness",
         "insightText": "Quality over quantity in relationships is key. Seeking genuine connections, even with just one or two people, can fill that void more than superficial interactions.",
         "storyText": "Despite being around people, I often feel very lonely. It's like I'm performing, but not truly connecting, which leaves me feeling empty."
       },
@@ -49,10 +57,65 @@
     {
       "data": {
         "alias": "GrowthSeeker",
+        "topic": "Imposter Syndrome",
         "insightText": "It's a common experience, especially among high-achievers. Acknowledging your accomplishments and focusing on continuous learning, rather than perfection, helps to build self-worth.",
         "storyText": "I sometimes struggle with imposter syndrome, feeling like I'm not good enough despite my achievements. The fear of being 'found out' is constant."
       },
       "id": "STORY-7A435B41"
+    },
+    {
+      "data": {
+        "alias": "MindfulCoder",
+        "topic": "Burnout",
+        "insightText": "Setting firm work boundaries and scheduling true downtime have reignited my creativity. Rest isn't a luxury—it's fuel.",
+        "storyText": "After months of crunch time, I woke up one day utterly drained. Even opening my laptop felt impossible, and my passion projects started to feel like chores."
+      },
+      "id": "STORY-B4EEA1F0"
+    },
+    {
+      "data": {
+        "alias": "StoicScholar",
+        "topic": "Perfectionism",
+        "insightText": "Submitting 'good enough' work lets me learn faster. Perfection can be a cage; momentum is freedom.",
+        "storyText": "I'd rewrite essays a dozen times and still hesitate to hit submit. The fear of mistakes kept me in an endless loop."
+      },
+      "id": "STORY-AD1357B2"
+    },
+    {
+      "data": {
+        "alias": "PhoenixSoul",
+        "topic": "Grief",
+        "insightText": "Grief ebbs and flows. Allowing myself to feel every wave—without judgment—honors the love that came before the loss.",
+        "storyText": "After losing my father, everyday objects trigger memories. Sometimes I break down in the grocery aisle, wondering if that's normal."
+      },
+      "id": "STORY-C9D8E1F3"
+    },
+    {
+      "data": {
+        "alias": "NightNavigator",
+        "topic": "Insomnia",
+        "insightText": "A consistent wind-down routine—no screens, gentle stretches, and mindful breathing—has turned bedtime from a battle into a ritual.",
+        "storyText": "For years I'd lie awake replaying the day's mistakes. The later it got, the more anxious I felt about not sleeping."
+      },
+      "id": "STORY-F0A1B23C"
+    },
+    {
+      "data": {
+        "alias": "BrightBeacon",
+        "topic": "Self-Esteem",
+        "insightText": "Daily affirmations felt silly at first, but tracking small wins rewired my inner dialog from critical to compassionate.",
+        "storyText": "Negative self-talk was my default soundtrack. Compliments bounced off me, but criticism stuck like glue."
+      },
+      "id": "STORY-8C2E4D76"
+    },
+    {
+      "data": {
+        "alias": "BoundlessDreamer",
+        "topic": "Imposter Syndrome",
+        "insightText": "Keeping a 'brag document' of achievements reminds me that facts, not feelings, define my competence.",
+        "storyText": "Despite leading major projects I'm convinced someone will realize I'm a fraud who just got lucky."
+      },
+      "id": "STORY-D3E9A75B"
     }
   ]
 }
